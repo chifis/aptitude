@@ -1,0 +1,21 @@
+<div *ngIf="!testCompleted; else results">
+	<countdown [config]="{leftTime: 500}" (finished)="onCountDownFinished()">$!m!:$!s!</countdown>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4" *ngFor="let questionGroup of questionGroups">
+				<div class="form-inline mb-1" *ngFor="let q of questionGroup">
+					<span class="questionNumber text-right font-weight-bold d-inline-block mr-1">{{q.questionNumber}}</span>
+					<span class="seperator d-inline-block mr-1">.</span>
+					<span class="question d-inline-block mr-1">{{q.title}}</span>
+					<input type="number" class="form-control form-control-sm" [(ngModel)]="userAnswers[q.questionNumber]">
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<button class="btn btn-primary" (click)="onSubmitTest()">Submit</button>
+</div>
+<ng-template #results>
+	<app-result [totalQuestions]="questions.length" [score]="score"></app-result>
+</ng-template>

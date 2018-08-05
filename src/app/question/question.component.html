@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 border border-primary rounded mb-2">
+			<div class="container">
+				<div class="row">
+					<strong>{{question.questionNumber}}. {{question.questionText}}</strong>
+				</div>
+				<div class="row mb-1">
+					<div class="col-md-1">
+						<span><input type="radio" 
+								(change)="answerChanged($event.target.checked, 0)"
+								[name]="question.questionNumber"> a. {{question.options[0]}}</span>
+					</div>
+					<div class="col-md-1">
+						<span><input type="radio"
+								(change)="answerChanged($event.target.checked, 1)"
+								[name]="question.questionNumber"> b. {{question.options[1]}}</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-1">
+						<span><input type="radio"
+								(change)="answerChanged($event.target.checked, 2)"
+								[name]="question.questionNumber"> c. {{question.options[2]}}</span>
+					</div>
+					<div class="col-md-1">
+						<span><input type="radio"
+								(change)="answerChanged($event.target.checked, 3)"
+								[name]="question.questionNumber"> d. {{question.options[3]}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
