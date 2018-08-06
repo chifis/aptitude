@@ -23,6 +23,13 @@ const routes: Routes = [
 		children: [
 			{path: 'test', component: TestComponent, data: {operator: '-'}}
 		]
+	},
+	{
+		path: 'multiplication',
+		component: SubtractionComponent,
+		children: [
+			{path: 'test', component: TestComponent, data: {operator: '*'}}
+		]
 	}
 ];
 
