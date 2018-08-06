@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AdditionComponent } from './addition/addition.component';
 import { ResultComponent } from './result/result.component';
 import { TestComponent } from './test/test.component';
+import { SubtractionComponent } from './subtraction/subtraction.component';
 
 const routes: Routes = [
 	{path: '', component: LoginComponent},
@@ -13,11 +14,16 @@ const routes: Routes = [
 		path: 'addition',
 		component: AdditionComponent,
 		children: [
-			{path: 'test', component: TestComponent},
-			{path: 'result', component: ResultComponent}
+			{path: 'test', component: TestComponent, data: {operator: '+'}}
 		]
 	},
-	{path: 'result', component: ResultComponent},
+	{
+		path: 'subtraction',
+		component: SubtractionComponent,
+		children: [
+			{path: 'test', component: TestComponent, data: {operator: '-'}}
+		]
+	}
 ];
 
 @NgModule({

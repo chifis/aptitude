@@ -19,6 +19,7 @@ import { TestComponent } from './test/test.component';
 import { QuestionComponent } from './question/question.component';
 
 import { CountdownModule } from 'ngx-countdown';
+import { SubtractionComponent } from './subtraction/subtraction.component';
 
 @NgModule({
 	declarations: [
@@ -30,7 +31,8 @@ import { CountdownModule } from 'ngx-countdown';
 		ResultComponent,
 		ReportComponent,
 		TestComponent,
-		QuestionComponent
+		QuestionComponent,
+		SubtractionComponent
 	],
 	imports: [
 		BrowserModule,

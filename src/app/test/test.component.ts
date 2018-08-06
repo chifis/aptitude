@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdditionQuestionsGeneratorService } from '../providers/addition-questions-generator.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from "lodash";
 
 @Component({
@@ -16,8 +16,10 @@ export class TestComponent implements OnInit {
 	userAnswers: any = [];
 	score: number = 0;
 	
-	constructor(private addGen: AdditionQuestionsGeneratorService, private router: Router) {
-		this.questions = addGen.getQuestions(30);
+	constructor(private addGen: AdditionQuestionsGeneratorService, 
+			private router: Router,
+			private activatedRoute: ActivatedRoute) {
+		this.questions = addGen.getQuestions(20, activatedRoute.routeConfig.data.operator);
 		this.questionGroups = _.chunk(this.questions, 10);
 	}
 
