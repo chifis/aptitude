@@ -1,5 +1,5 @@
 <div class="text-center">
-	<h1 *ngIf="!testCompleted;else results;"><countdown [config]="{leftTime: 20}"
+	<h1 *ngIf="!testCompleted;else results;"><countdown [config]="{leftTime: 2000}"
 				(finished)="onCountDownFinished()">$!m!:$!s!</countdown></h1>
 	<br>
 	<div class="container">
