@@ -1,0 +1,19 @@
+<div *ngIf="!testStarted; else test" class="text-center">
+	<strong>This test will contain 20 questions</strong>
+	<div class="form-inline justify-content-center">
+		<div class="form-group ml-2">
+			<input type="radio" class="form-control" name="timerType"
+					[(ngModel)]="timerType" value="down" id="countDown">
+			<label for="countDown">Count Down</label>
+		</div>
+		<div class="form-group ml-2">
+			<input type="radio" class="form-control" name="timerType"
+					[(ngModel)]="timerType" value="up" id="countUp">
+			<label for="countUp">Count Up</label>
+		</div>
+	</div>
+	<button class="btn btn-primary" (click)="startTest()">Start</button>
+</div>
+<ng-template #test>
+	<app-test [timerType]="timerType"></app-test>
+</ng-template>

@@ -21,6 +21,8 @@ import { QuestionComponent } from './question/question.component';
 import { CountdownModule } from 'ngx-countdown';
 import { SubtractionComponent } from './subtraction/subtraction.component';
 import { MultiplicationComponent } from './multiplication/multiplication.component';
+import { TestWrapperComponent } from './test-wrapper/test-wrapper.component';
+import { TimerUpDownComponent } from './timer-up-down/timer-up-down.component';
 
 @NgModule({
 	declarations: [
@@ -34,7 +36,9 @@ import { MultiplicationComponent } from './multiplication/multiplication.compone
 		TestComponent,
 		QuestionComponent,
 		SubtractionComponent,
-		MultiplicationComponent
+		MultiplicationComponent,
+		TestWrapperComponent,
+		TimerUpDownComponent
 	],
 	imports: [
 		BrowserModule,

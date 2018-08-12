@@ -11,7 +11,6 @@ export class NavigationComponent implements OnInit {
 	loggedIn: boolean = false;
 	
 	constructor(private _firebaseAuth: AngularFireAuth, private authService: AuthService) {
-		console.log('constructor loggedIn: ', this.loggedIn);
 	}
 
 	logout() {
@@ -20,9 +19,7 @@ export class NavigationComponent implements OnInit {
 
 	ngOnInit() {
 		this._firebaseAuth.authState.subscribe((data) => {
-			console.log('data: ', data);
 			this.loggedIn = !!data;
-			console.log('this.loggedIn: ', this.loggedIn);
 		});
 	}
 }

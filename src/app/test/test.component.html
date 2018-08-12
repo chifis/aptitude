@@ -1,6 +1,9 @@
 <div class="text-center">
-	<h1 *ngIf="!testCompleted;else results;"><countdown [config]="{leftTime: 2000}"
-				(finished)="onCountDownFinished()">$!m!:$!s!</countdown></h1>
+	<h1 *ngIf="!testCompleted;else results;"><app-timer-up-down 
+			[type]="timerType" startSeconds="2000"
+			(timeComplete)="onTimeComplete()"
+			(timeUpdate)="onTimeUpdate($event)"
+			></app-timer-up-down></h1>
 	<br>
 	<div class="container">
 		<div class="row">
@@ -24,8 +27,9 @@
 		</div>
 	</div>
 	<br>
-	<button class="btn btn-primary" (click)="onSubmitTest()">Submit</button>
+	<button *ngIf="!testCompleted" class="btn btn-primary" (click)="onSubmitTest()">Submit</button>
 </div>
 <ng-template #results>
-	<app-result [totalQuestions]="questions.length" [score]="score"></app-result>
+	<app-result [totalQuestions]="questions.length" [score]="score"
+				[timeTaken]='timeString'></app-result>
 </ng-template>

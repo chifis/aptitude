@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ResultComponent implements OnInit {
 	@Input('score') score: number;
 	@Input('totalQuestions') totalQuestions: number;
+	@Input('timeTaken') timeTaken: string;
 
 	ngOnInit() {}
 }
