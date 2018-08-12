@@ -1,17 +1,24 @@
-<div *ngIf="!testCompleted; else results" class="text-center">
-	<h1><countdown [config]="{leftTime: 500}" (finished)="onCountDownFinished()">$!m!:$!s!</countdown></h1>
+<div class="text-center">
+	<h1 *ngIf="!testCompleted;else results;"><countdown [config]="{leftTime: 20}"
+				(finished)="onCountDownFinished()">$!m!:$!s!</countdown></h1>
 	<br>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-4 text-center" *ngFor="let questionGroup of questionGroups">
+			<div class="col-md-1"></div>
+			<div class="col-md-5 text-center" *ngFor="let questionGroup of questionGroups">
 				<div class="form-inline mb-1" *ngFor="let q of questionGroup">
 					<span class="questionNumber text-right font-weight-bold d-inline-block mr-1">
 						{{q.questionNumber}}</span>
 					<span class="seperator d-inline-block mr-1">.</span>
 					<span class="question d-inline-block mr-1">{{q.title}}</span>
-					<input type="number" class="form-control form-control-sm" 
-							[(ngModel)]="userAnswers[q.questionNumber]">
+					<input type="number" class="form-control mr-1" 
+						[(ngModel)]="userAnswers[q.questionNumber]"
+						[ngClass]="{'answer-field': testCompleted, 
+									'border-success': testCompleted && q.correctAnswer,
+									'border-danger': testCompleted && !q.correctAnswer}">
+					<input type="text" class="form-control answer-field"
+						*ngIf="testCompleted"
+						disabled readonly [value]="q.answer">
 				</div>
 			</div>
 		</div>

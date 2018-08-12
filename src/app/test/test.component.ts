@@ -40,6 +40,7 @@ export class TestComponent implements OnInit {
 		for(const question of this.questions) {
 			if(this.userAnswers[question.questionNumber] == question.answer) {
 				this.score++;
+				question.correctAnswer = true;
 			}
 		}
 		
