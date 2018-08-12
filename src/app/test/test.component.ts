@@ -29,11 +29,11 @@ export class TestComponent implements OnInit {
 	}
 
 	getOperator(url) {
-		if(url.indexOf('addition')) {
+		if(url.indexOf('addition') >= 0) {
 			return '+';
-		} else if(url.indexOf('subtraction')) {
+		} else if(url.indexOf('subtraction') >= 0) {
 			return '-'
-		} else if(url.indexOf('multiplication')) {
+		} else if(url.indexOf('multiplication') >= 0) {
 			return '*';
 		}
 		return '+';

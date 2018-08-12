@@ -6,30 +6,22 @@ import { AdditionComponent } from './addition/addition.component';
 import { ResultComponent } from './result/result.component';
 import { TestComponent } from './test/test.component';
 import { SubtractionComponent } from './subtraction/subtraction.component';
+import { MultiplicationComponent } from './multiplication/multiplication.component';
 
 const routes: Routes = [
 	{path: '', component: LoginComponent},
 	{path: 'home', component: HomeComponent},
 	{
 		path: 'addition',
-		component: AdditionComponent,
-		children: [
-			{path: 'test', component: TestComponent, data: {operator: '+'}}
-		]
+		component: AdditionComponent
 	},
 	{
 		path: 'subtraction',
-		component: SubtractionComponent,
-		children: [
-			{path: 'test', component: TestComponent, data: {operator: '-'}}
-		]
+		component: SubtractionComponent
 	},
 	{
 		path: 'multiplication',
-		component: SubtractionComponent,
-		children: [
-			{path: 'test', component: TestComponent, data: {operator: '*'}}
-		]
+		component: MultiplicationComponent
 	}
 ];
 
