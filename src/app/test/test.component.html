@@ -1,12 +1,12 @@
 <div class="text-center">
-	<h1 *ngIf="!testCompleted;else results;"><app-timer-up-down 
+	<h1 *ngIf="!testCompleted;else results;" class="text-right h4"><app-timer-up-down 
 			[type]="timerType" startSeconds="2000"
 			(timeComplete)="onTimeComplete()"
 			(timeUpdate)="onTimeUpdate($event)"
 			></app-timer-up-down></h1>
 	<br>
 	<div class="container">
-		<div class="row">
+		<div class="row" *ngIf="!twoOptions">
 			<div class="col-md-1"></div>
 			<div class="col-md-5 text-center" *ngFor="let questionGroup of questionGroups">
 				<div class="form-inline mb-1" *ngFor="let q of questionGroup">
@@ -22,6 +22,25 @@
 					<input type="text" class="form-control answer-field"
 						*ngIf="testCompleted"
 						disabled readonly [value]="q.answer">
+				</div>
+			</div>
+		</div>
+		<div class="row" *ngIf="twoOptions">
+			<div class="col-md-1"></div>
+			<div class="col-md-4 offset-md-1" *ngFor="let questionGroup of questionGroups">
+				<div class="form-inline mb-1" *ngFor="let q of questionGroup"
+					[ngClass]="{'border': testCompleted,
+								'border-success': testCompleted && q.correctAnswer,
+								'border-danger': testCompleted && !q.correctAnswer}">
+					<span class="questionNumber font-weight-bold text-right d-inline-block mr-2">
+							{{q.questionNumber}}. </span>
+					<span class="d-inline-block w-50 text-left">{{q.title}}</span>
+					<input type="radio" [name]="q.questionNumber" [id]="q.questionNumber+'1'" value="Yes"
+							class="mr-1" [(ngModel)]="userAnswers[q.questionNumber]">
+					<label [for]="q.questionNumber+'1'" class="mr-2">Yes</label>
+					<input type="radio" [name]="q.questionNumber" [id]="q.questionNumber+'2'" value="No"
+							class="mr-1" [(ngModel)]="userAnswers[q.questionNumber]">
+					<label [for]="q.questionNumber+'2'">No</label>
 				</div>
 			</div>
 		</div>

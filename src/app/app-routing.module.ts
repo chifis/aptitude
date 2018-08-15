@@ -7,22 +7,17 @@ import { ResultComponent } from './result/result.component';
 import { TestComponent } from './test/test.component';
 import { SubtractionComponent } from './subtraction/subtraction.component';
 import { MultiplicationComponent } from './multiplication/multiplication.component';
+import { PercentageComponent } from './percentage/percentage.component';
+import { DivisibilityComponent } from './divisibility/divisibility.component';
 
 const routes: Routes = [
 	{path: '', component: LoginComponent},
 	{path: 'home', component: HomeComponent},
-	{
-		path: 'addition',
-		component: AdditionComponent
-	},
-	{
-		path: 'subtraction',
-		component: SubtractionComponent
-	},
-	{
-		path: 'multiplication',
-		component: MultiplicationComponent
-	}
+	{path: 'addition', component: AdditionComponent},
+	{path: 'subtraction', component: SubtractionComponent},
+	{path: 'multiplication', component: MultiplicationComponent},
+	{path: 'percentage', component: PercentageComponent},
+	{path: 'divisibility', component: DivisibilityComponent}
 ];
 
 @NgModule({

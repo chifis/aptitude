@@ -23,6 +23,8 @@ import { SubtractionComponent } from './subtraction/subtraction.component';
 import { MultiplicationComponent } from './multiplication/multiplication.component';
 import { TestWrapperComponent } from './test-wrapper/test-wrapper.component';
 import { TimerUpDownComponent } from './timer-up-down/timer-up-down.component';
+import { PercentageComponent } from './percentage/percentage.component';
+import { DivisibilityComponent } from './divisibility/divisibility.component';
 
 @NgModule({
 	declarations: [
@@ -38,7 +40,9 @@ import { TimerUpDownComponent } from './timer-up-down/timer-up-down.component';
 		SubtractionComponent,
 		MultiplicationComponent,
 		TestWrapperComponent,
-		TimerUpDownComponent
+		TimerUpDownComponent,
+		PercentageComponent,
+		DivisibilityComponent
 	],
 	imports: [
 		BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AdditionQuestionsGeneratorService } from '../providers/addition-questions-generator.service';
 import { Router} from '@angular/router';
 import * as _ from "lodash";
+import * as mathjs from 'mathjs';
 
 @Component({
 	selector: 'app-test',
@@ -19,12 +20,15 @@ export class TestComponent implements OnInit {
 	secondsTaken: number = 0;
 	timeString: string = '';
 
+	twoOptions: boolean = false;
+
 	@Input('timerType') timerType: string = 'up';
 	
 	constructor(private addGen: AdditionQuestionsGeneratorService, 
 			private router: Router) {
 		const operator = this.getOperator(this.router.url);
 		this.questions = addGen.getQuestions(20, operator);
+		console.log('this.questions: ', this.questions);
 		this.questionGroups = _.chunk(this.questions, 10);
 	}
 
@@ -35,6 +39,11 @@ export class TestComponent implements OnInit {
 			return '-'
 		} else if(url.indexOf('multiplication') >= 0) {
 			return '*';
+		} else if(url.indexOf('percentage') >= 0) {
+			return '%';
+		} else if(url.indexOf('divisibility') >= 0) {
+			this.twoOptions = true;
+			return 'divisibility';
 		}
 		return '+';
 	}
@@ -55,12 +64,34 @@ export class TestComponent implements OnInit {
 	}
 
 	evaluateScore() {
+		if(this.getOperator(this.router.url) === '%') {
+			this.evaluatePercentageScore();
+		} else {
+			this.score = 0;
+			for(const question of this.questions) {
+				const userAnswer = this.userAnswers[question.questionNumber];
+				if(userAnswer == question.answer) {
+					this.score++;
+					question.correctAnswer = true;
+				}
+			}
+		}
+	}
+
+	evaluatePercentageScore() {
 		this.score = 0;
 		for(const question of this.questions) {
-			if(this.userAnswers[question.questionNumber] == question.answer) {
-				this.score++;
-				question.correctAnswer = true;
-			}
+			try {
+				const userAnswer: number = parseFloat(this.userAnswers[question.questionNumber]);
+				if(mathjs.round(userAnswer, 2)  == question.answer) {
+					const roundedUserAnswer = parseFloat(mathjs.round(userAnswer, 2).toString());
+					const difference = mathjs.round(mathjs.abs(roundedUserAnswer - question.answer), 2);
+					if(difference <= 0.1) {
+						this.score++;
+						question.correctAnswer = true;
+					}
+				}		
+			} catch (error) {}
 		}
 	}
 
